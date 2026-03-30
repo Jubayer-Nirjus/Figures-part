@@ -87,7 +87,7 @@ model_handles = [
 ]
 leg1 = ax.legend(handles=model_handles,
                  title='AI model family', title_fontsize=9,
-                 fontsize=8.5, loc='upper left',
+                 fontsize=8.5, loc='lower left',
                  framealpha=0.92, edgecolor='#cccccc')
 ax.add_artist(leg1)
 
@@ -103,7 +103,7 @@ tier_handles.append(
                   markersize=8, label='\u25c6 = performance not reported'))
 ax.legend(handles=tier_handles,
           title='Best performance metric tier', title_fontsize=9,
-          fontsize=8.5, loc='upper right',
+          fontsize=8.5, loc='lower center',
           framealpha=0.92, edgecolor='#cccccc')
 
 ax.set_title(

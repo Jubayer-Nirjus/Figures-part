@@ -45,14 +45,14 @@ bars = ax.barh(y, counts, color=colors, height=0.62,
 for bar, n in zip(bars, counts):
     ax.text(bar.get_width() + 0.2,
             bar.get_y() + bar.get_height()/2,
-            f'n = {n}', va='center', fontsize=9.5,
+            f'n = {n}', va='center', fontsize=8.5,
             fontweight='bold', color='#222222')
 
 ax.set_yticks(y)
-ax.set_yticklabels(aims, fontsize=9.5)
+ax.set_yticklabels(aims, fontsize=8.5)
 ax.invert_yaxis()
 ax.set_xlabel('Number of studies (multi-select; total tags > n = 28)',
-              fontsize=10, labelpad=6)
+              fontsize=10, labelpad=8)
 ax.set_xlim(0, 31)
 ax.xaxis.grid(True, linestyle='--', alpha=0.35)
 ax.set_axisbelow(True)
@@ -62,12 +62,12 @@ ax.spines['right'].set_visible(False)
 # Development vs validation separator after index 2 (RT implementation) / before 3 (Validate)
 ax.axhline(y=2.5, color='#c0392b', linestyle='--', linewidth=1.3, alpha=0.8)
 ax.annotate('Model-development aims \u25b2',
-            xy=(25, 0.3), fontsize=8.5, color=DARK,
+            xy=(28, 0.8), fontsize=8.5, color=DARK,
             ha='center', va='bottom', style='italic')
 ax.annotate('\u25bc Model-validation / translation aims',
             xy=(6, 3.3), fontsize=8.5, color='#c0392b',
             ha='left', va='top', style='italic')
-ax.text(30.5, 2.5, '89% vs 21%\ndev./val.\nimbalance',
+ax.text(30.5, 3, '89% vs 21%\ndev./val.\nimbalance',
         fontsize=7.5, ha='right', va='center', color='#c0392b', style='italic')
 
 ax.set_title(

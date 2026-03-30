@@ -66,7 +66,7 @@ ax.yaxis.grid(True, linestyle='--', alpha=0.3)
 ax.set_axisbelow(True)
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
-ax.legend(fontsize=9.5, loc='upper right', framealpha=0.9, edgecolor='#cccccc')
+ax.legend(fontsize=6, loc='upper right', framealpha=0.9, edgecolor='#cccccc')
 
 ax.set_title(
     'Fig. 8. Temporal evolution of AI modelling approaches by publication period\n'

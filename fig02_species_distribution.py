@@ -8,8 +8,9 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import numpy as np
 
+# Font updated to Arial as per journal guidelines, ensuring crisp alignment
 plt.rcParams.update({
-    'font.family': 'DejaVu Sans',
+    'font.family': 'Arial',
     'font.size': 11,
     'axes.linewidth': 0.8,
     'axes.edgecolor': '#333333',
@@ -61,7 +62,8 @@ b3 = ax2.bar(years, goat,   color=LIGHT,  width=0.6, label='Goats',       alpha=
 b4 = ax2.bar(years, other,  color=ORANGE, width=0.6, label='Cattle & Pig',alpha=0.92,
              bottom=[c+s+g for c,s,g in zip(cattle,sheep,goat)])
 
-ax2.set_xlabel('Publication year', fontsize=11, labelpad=6)
+# labelpad increased to 15 to prevent overlap with rotated tick labels
+ax2.set_xlabel('Publication year', fontsize=11, labelpad=15)
 ax2.set_ylabel('Number of studies', fontsize=11, labelpad=6)
 ax2.set_xticks(years)
 ax2.set_xticklabels([str(y) for y in years], fontsize=9, rotation=45, ha='right')
@@ -77,10 +79,13 @@ ax2.set_title('(b) Species representation by publication year',
 fig.suptitle(
     'Fig. 2. Species distribution of included studies (n = 28).\n'
     '(a) Total studies per species. (b) Species representation across publication years.',
-    fontsize=10, fontweight='bold', y=1.02, ha='center')
+    fontsize=10, fontweight='bold', y=1.04, ha='center')
 
+# Adjust layout to accommodate the increased labelpad smoothly
 plt.tight_layout()
+plt.subplots_adjust(bottom=0.18)
+
 plt.savefig('./figures/Fig02_species_distribution.tiff',
             format='tiff', dpi=300, bbox_inches='tight', facecolor='white')
 plt.close()
-print("Fig 2 saved")
+print("Fig 2 saved with layout and font updates successfully!")

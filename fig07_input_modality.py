@@ -6,8 +6,9 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
+# Font updated to Arial as per journal formatting rules
 plt.rcParams.update({
-    'font.family': 'DejaVu Sans',
+    'font.family': 'Arial',
     'font.size': 11,
     'axes.linewidth': 0.8,
     'axes.edgecolor': '#333333',
@@ -21,8 +22,9 @@ GRAY  = '#808080'
 
 fig, ax = plt.subplots(figsize=(10, 5.5))
 
+# Refined labels to make them cleaner and professionally spaced
 cats   = ['Video /\ncamera (RGB)', 'Multi-sensor\nfusion', 'Still images\n(RGB)',
-          'Accelero-\nmeter', 'RFID']
+          'Accelerometer', 'RFID']
 counts = [22, 5, 4, 2, 1]
 pcts   = [79, 18, 14, 7, 4]
 colors = [DARK, MID, LIGHT, ORANGE, GRAY]
@@ -43,7 +45,8 @@ ax.set_axisbelow(True)
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
 
-ax.text(0.99, 0.97,
+# Shifted down slightly to guarantee no collision with multi-line title parameters
+ax.text(0.99, 0.91,
         'Note: No included study used thermal,\n'
         'depth, or hyperspectral imaging\n'
         'as a primary modality.',
@@ -56,10 +59,11 @@ ax.set_title(
     'Fig. 7. Distribution of primary input modalities across included studies (n = 28).\n'
     'All included studies used standard RGB imaging only. Multi-sensor fusion = camera\n'
     'combined with accelerometer or RFID.',
-    fontsize=10, fontweight='bold', pad=10)
+    fontsize=10, fontweight='bold', pad=15)
 
+# Layout padding optimization
 plt.tight_layout()
 plt.savefig('./figures/Fig07_input_modality.tiff',
             format='tiff', dpi=300, bbox_inches='tight', facecolor='white')
 plt.close()
-print("Fig 7 saved")
+print("Fig 7 saved successfully with layout adjustments!")

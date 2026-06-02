@@ -10,8 +10,9 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import numpy as np
 
+# Updated font to Arial as per journal formatting guidelines
 plt.rcParams.update({
-    'font.family': 'DejaVu Sans',
+    'font.family': 'Arial',
     'font.size': 11,
     'axes.linewidth': 0.8,
     'axes.edgecolor': '#333333',
@@ -74,17 +75,17 @@ ax.set_yticks(y)
 ax.set_yticklabels(labels, fontsize=9.5)
 ax.invert_yaxis()
 ax.set_xlabel('Number of included studies (multi-select; n = 28 total)',
-              fontsize=10, labelpad=6)
+              fontsize=10, labelpad=8)
 ax.set_xlim(0, 34)
 ax.xaxis.grid(True, linestyle='--', alpha=0.3)
 ax.set_axisbelow(True)
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
 
-# Gap separator line
+# Gap separator line: Positioned text cleanly to avoid collision with lines
 ax.axhline(y=7.5, color='#c0392b', linestyle='--', linewidth=1.2, alpha=0.7)
-ax.text(33.5, 7.2, 'Evidence\ngap below',
-        fontsize=7.5, color='#c0392b', ha='right', style='italic')
+ax.text(33.5, 7.1, 'Evidence\ngap below',
+        fontsize=8, color='#c0392b', ha='right', va='bottom', style='italic', fontweight='bold')
 
 # Domain legend
 legend_patches = [
@@ -104,10 +105,13 @@ ax.set_title(
     'Fig. 6. Welfare outcome categories across included studies (n = 28),\n'
     'colour-coded by Five Domains Model domain (Mellor, 2017).\n'
     'Grey bars indicate outcomes absent from all included studies. See Table 3.',
-    fontsize=10, fontweight='bold', pad=12)
+    fontsize=10, fontweight='bold', pad=15)
 
+# Expanded left margin layout adjustment for long multiline labels
 plt.tight_layout()
+plt.subplots_adjust(left=0.32)
+
 plt.savefig('./figures/Fig06_welfare_outcomes.tiff',
             format='tiff', dpi=300, bbox_inches='tight', facecolor='white')
 plt.close()
-print("Fig 6 saved")
+print("Fig 6 saved successfully with updated font and clean spacing layout!")

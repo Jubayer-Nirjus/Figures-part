@@ -7,8 +7,9 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
 
+# Updated font family to Arial as per journal formatting requirements
 plt.rcParams.update({
-    'font.family': 'DejaVu Sans',
+    'font.family': 'Arial',
     'font.size': 11,
     'axes.linewidth': 0.8,
     'axes.edgecolor': '#333333',
@@ -17,8 +18,8 @@ plt.rcParams.update({
 DARK  = '#1B3F6E'
 MID   = '#2E75B6'
 LIGHT = '#9DC3E6'
-GREEN = '#70AD47'
 ORANGE= '#C55A11'
+GRAY  = '#808080'
 
 fig, ax = plt.subplots(figsize=(10, 6))
 
@@ -38,12 +39,9 @@ x = np.arange(3)
 w = 0.55
 
 p1 = ax.bar(x, dl,     color=DARK,   width=w, label='Deep learning',   alpha=0.92)
-p2 = ax.bar(x, cml,    color=ORANGE, width=w, label='Classical ML',    alpha=0.92,
-            bottom=dl)
-p3 = ax.bar(x, hybrid, color=LIGHT,  width=w, label='Hybrid',          alpha=0.92,
-            bottom=[a+b for a,b in zip(dl,cml)])
-p4 = ax.bar(x, trad,   color=GREEN,  width=w, label='Traditional CV',  alpha=0.92,
-            bottom=[a+b+c for a,b,c in zip(dl,cml,hybrid)])
+p2 = ax.bar(x, cml,    color=LIGHT,  width=w, label='Classical ML',    alpha=0.92, bottom=dl)
+p3 = ax.bar(x, hybrid, color=MID,    width=w, label='Hybrid',          alpha=0.92, bottom=[a+b for a,b in zip(dl,cml)])
+p4 = ax.bar(x, trad,   color=ORANGE, width=w, label='Traditional CV',  alpha=0.92, bottom=[a+b+c for a,b,c in zip(dl,cml,hybrid)])
 
 def label_seg(patches, vals, bottoms):
     for patch, val, bot in zip(patches, vals, bottoms):
@@ -61,22 +59,27 @@ label_seg(p4, trad,   [a+b+c for a,b,c in zip(dl,cml,hybrid)])
 ax.set_xticks(x)
 ax.set_xticklabels(periods, fontsize=10)
 ax.set_ylabel('Proportion of studies within period (%)', fontsize=12, labelpad=6)
-ax.set_ylim(0, 115)
+ax.set_ylim(0, 105) # Adjusted to 105 to represent standard 100% stacked scale limit nicely
 ax.yaxis.grid(True, linestyle='--', alpha=0.3)
 ax.set_axisbelow(True)
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
-ax.legend(fontsize=6, loc='upper right', framealpha=0.9, edgecolor='#cccccc')
+
+# Legend font size optimized to 9.5 for strict journal legibility
+ax.legend(fontsize=9.5, loc='upper left', bbox_to_anchor=(1.02, 1), framealpha=0.9, edgecolor='#cccccc')
 
 ax.set_title(
     'Fig. 8. Temporal evolution of AI modelling approaches by publication period\n'
     '(100% stacked bar; cross-tabulation; n = 28).\n'
     'Caution: the \u2018before 2020\u2019 period contains only 2 studies; '
     'proportional values are illustrative only.',
-    fontsize=10, fontweight='bold', pad=10)
+    fontsize=10, fontweight='bold', pad=15)
 
+# Cleaned spacing parameters
 plt.tight_layout()
+plt.subplots_adjust(top=0.86)
+
 plt.savefig('./figures/Fig08_temporal_evolution.tiff',
             format='tiff', dpi=300, bbox_inches='tight', facecolor='white')
 plt.close()
-print("Fig 8 saved")
+print("Fig 8 saved successfully with enhanced font legibility!")

@@ -11,8 +11,9 @@ import matplotlib.patches as mpatches
 import matplotlib.lines as mlines
 import numpy as np
 
+# Updated font to Arial as per journal formatting requirements
 plt.rcParams.update({
-    'font.family': 'DejaVu Sans',
+    'font.family': 'Arial',
     'font.size': 10,
 })
 
@@ -70,35 +71,35 @@ for ai_i, wo_i, weight in edges:
         mx = (x1+0.45 + x2-0.45)/2
         my = (y1 + y2)/2
         ax.text(mx, my+0.14, str(weight),
-                fontsize=7, ha='center', color='#1B3F6E', fontweight='bold')
+                fontsize=7.5, ha='center', color='#1B3F6E', fontweight='bold')
 
-# Draw AI nodes
+# Draw AI nodes with adjusted text spacing (offsets increased to prevent overlapping with circles)
 for x, y, label, n, color in ai_nodes:
     sz = max(400, n * 110)
     ax.scatter(x, y, s=sz, c=color, zorder=3,
                edgecolors='white', linewidths=1.5, alpha=0.9)
-    ax.text(x - 0.55, y, label, fontsize=9, ha='right', va='center',
+    ax.text(x - 0.65, y, label, fontsize=9.5, ha='right', va='center',
             fontweight='bold', color='#1a1a1a')
-    ax.text(x + 0.52, y - 0.38, f'n={n}', fontsize=7.5,
-            ha='left', va='top', color='#555555')
+    ax.text(x - 0.65, y - 0.42, f'n={n}', fontsize=8,
+            ha='right', va='top', color='#555555')
 
-# Draw welfare outcome nodes
+# Draw welfare outcome nodes with precise margins
 for x, y, label, n, color, pres in wo_nodes:
     if not pres:
         ax.scatter(x, y, s=200, c=color, zorder=3,
                    edgecolors='#c0392b', linewidths=2.5, alpha=0.6, marker='X')
-        ax.text(x + 0.58, y, label, fontsize=9, ha='left', va='center',
-                color='#c0392b', style='italic')
+        ax.text(x + 0.62, y, label, fontsize=9.5, ha='left', va='center',
+                color='#c0392b', style='italic', fontweight='bold')
     else:
         sz = max(350, n * 75)
         ax.scatter(x, y, s=sz, c=color, zorder=3,
                    edgecolors='white', linewidths=1.5, alpha=0.88)
-        ax.text(x + 0.58, y, label, fontsize=9, ha='left', va='center',
+        ax.text(x + 0.62, y, label, fontsize=9.5, ha='left', va='center',
                 fontweight='bold', color='#1a1a1a')
-        ax.text(x + 0.55, y - 0.4, f'n={n}', fontsize=7.5,
+        ax.text(x + 0.62, y - 0.42, f'n={n}', fontsize=8,
                 ha='left', va='top', color='#555555')
 
-# Headers
+# Headers and Bounding annotations
 for hx, htxt in [(2, 'AI model families'), (8, 'Welfare outcome categories')]:
     ax.text(hx, 9.75, htxt, fontsize=11, fontweight='bold', ha='center',
             color=DARK,
@@ -107,7 +108,7 @@ for hx, htxt in [(2, 'AI model families'), (8, 'Welfare outcome categories')]:
 
 ax.text(5, 0.08,
         'Edge label = number of co-occurring studies  |  Node size = frequency of occurrence  |  \u2715 = absent from all studies',
-        fontsize=8, ha='center', va='bottom', color='#555555', style='italic',
+        fontsize=8.5, ha='center', va='bottom', color='#555555', style='italic',
         bbox=dict(boxstyle='round,pad=0.4', facecolor='#F5F5F5',
                   edgecolor='#CCCCCC'))
 
@@ -116,10 +117,10 @@ ax.set_title(
     'categories across included studies (n = 28). Edge labels show co-occurrence frequency\n'
     '(studies in which that model family\u2013welfare outcome combination co-occurred).\n'
     '\u2715 indicates outcomes absent from all included studies.',
-    fontsize=10, fontweight='bold', pad=10)
+    fontsize=10, fontweight='bold', pad=15)
 
 plt.tight_layout()
 plt.savefig('./figures/FigS1_network_map.tiff',
             format='tiff', dpi=300, bbox_inches='tight', facecolor='white')
 plt.close()
-print("Fig S1 saved")
+print("Supplementary Fig S1 saved successfully with enhanced label boundaries!")

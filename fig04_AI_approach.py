@@ -6,8 +6,9 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
+# Font updated to Arial as per journal formatting guidelines
 plt.rcParams.update({
-    'font.family': 'DejaVu Sans',
+    'font.family': 'Arial',
     'font.size': 11,
     'axes.linewidth': 0.8,
     'axes.edgecolor': '#333333',
@@ -41,20 +42,22 @@ ax.set_axisbelow(True)
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
 
-ax.text(0.99, 0.97,
+# Adjusted text position slightly downwards to guarantee no collision with upper titles
+ax.text(0.99, 0.94,
         'Multi-select; sum of percentages exceeds 100%',
         transform=ax.transAxes, fontsize=8.5,
         ha='right', va='top', color='#555555', style='italic')
 
+# Configured clean title padding structure
 ax.set_title(
     'Fig. 4. Distribution of AI modelling approaches across included studies (n = 28).\n'
     'Categories are multi-select; percentages relative to n = 28.\n'
     'DL = deep learning; Classical ML = classical machine learning;\n'
     'Traditional CV = rule-based computer vision without machine learning.',
-    fontsize=10, fontweight='bold', pad=10)
+    fontsize=10, fontweight='bold', pad=15)
 
 plt.tight_layout()
 plt.savefig('./figures/Fig04_AI_approach.tiff',
             format='tiff', dpi=300, bbox_inches='tight', facecolor='white')
 plt.close()
-print("Fig 4 saved")
+print("Fig 4 saved successfully with Arial font and layout fixes!")
